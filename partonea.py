@@ -64,8 +64,8 @@ for i in range(repeats):
     newJac = getJacc(columnONE, columnTWO)
     Jacperms.append(newJac)
 
-sns.set_style('darkgrid')
-sns.displot(Jacperms)
+#sns.set_style('darkgrid')
+#sns.displot(Jacperms)
 #plt.show()
 
 #permutation test ends ###################
@@ -75,10 +75,18 @@ print("\nP-value from permutations for Mutual information:")
 pvaluem = getpval(MIperms, mutual_info_score(columnONEconstant,columnTWOconstant))
 print(pvaluem)
 
+jackperm = []
+for i in range(len(Jacperms)): #this is for the x side of the permutations
+    jackperm.append(i)
+
 #show Jaccard plot for permutations
 #sns.set_style('darkgrid')
-#sns.displot(Jacperms)
+#sns.displot(Jacperms) uncomment this one for histogram
+Jacperms.sort()
+plt.scatter(Jacperms, jackperm)
 #plt.show()
+
+
 
 #Calculate P-value for Jaccard
 print("\nP-value from permutations for Jaccard:")
